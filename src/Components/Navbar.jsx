@@ -48,11 +48,11 @@ export default function Navbar({
   );
 
   return (
-    <nav className={`relative w-full flex justify-between items-center bg-[#F9F6F0] z-100 ${className}`}>
+    <nav className={`relative lg:-mt-2 lg:-ml-6 w-full flex justify-between items-center bg-[#F9F6F0] z-100 ${className}`}>
       {/* Logo */}
       <div className="z-110">
         <a href="/">
-          <img className="w-56 md:w-72  object-contain" src={logo} alt={logoAlt} />
+          <img className="w-56 md:w-72 object-contain" src={logo} alt={logoAlt} />
         </a>
       </div>
 

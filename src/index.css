@@ -5,3 +5,7 @@
   /* This makes cupcake the fallback/default theme */
   themes: caramellatte --default, light, dark;
 }
+body {
+  font-family: 'Inter', sans-serif;
+  color: black;
+}
