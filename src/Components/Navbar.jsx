@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router";
 
 export default function Navbar({
   logo = "/images/icon.png",
@@ -14,10 +15,10 @@ export default function Navbar({
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const navItems = [
-    { label: "Expertises", href: "/expertises" },
-    { label: "Work", href: "/work" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: "Expertises", href: "#expertises" },
+    { label: "Work", href: "#work" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" },
   ];
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function Navbar({
   );
 
   return (
-    <nav className={`relative lg:-mt-2 lg:-ml-6 w-full flex justify-between items-center bg-[#F9F6F0] z-100 ${className}`}>
+<nav className={`sticky top-0 w-full flex justify-between items-center z-100 ${className}`}>
       {/* Logo */}
       <div className="z-110">
         <a href="/">
@@ -89,10 +90,11 @@ export default function Navbar({
       </ul>
 
       {/* Desktop CTA */}
-      <button className="hidden md:flex items-center gap-2 px-3 py-2 bg-[#F8C1F8] border-2 border-[#E9A6E9] rounded-2xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 hover:rotate-8">
+      <Link to={"#"}>
+      <button className="hidden md:flex items-center gap-2 px-3 py-2 bg-[#F8C1F8] border-2 border-[#E9A6E9] rounded-2xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 hover:rotate-8 cursor-pointer">
         Get Results
         <span className="bg-white p-1 rounded-lg">🔥</span>
-      </button>
+      </button></Link>
 
       {/* Mobile Menu Toggle */}
       <div className="md:hidden flex flex-col gap-1.5 cursor-pointer z-110" onClick={() => setOpen(!open)}>
@@ -139,14 +141,19 @@ export default function Navbar({
                 );
               })}
 
-              <motion.button
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 }}
-                className="w-full mt-4 flex items-center justify-center gap-3 px-8 py-5 bg-[#1A1A1A] text-white rounded-2xl font-bold text-xl border-4 border-black"
-              >
-                Get Results 🔥
-              </motion.button>
+              <motion.div
+  initial={{ opacity: 0, scale: 0.9 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ delay: 0.4 }}
+  className="w-full"
+>
+  <Link
+    to="/"
+    className="group w-full mt-4  items-center justify-center gap-3 px-8 py-5 bg-[#1A1A1A] text-white rounded-2xl font-bold text-xl border-4 border-black hover:scale-105 transition-transform active:scale-95 hover:rotate-3 cursor-pointer inline-block"
+  >
+    Get Results 🔥
+  </Link>
+</motion.div>
             </div>
           </motion.div>
         )}
