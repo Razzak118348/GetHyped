@@ -62,12 +62,12 @@ export default function MixedBounceCards({
   return (
     <div
       ref={containerRef}
-      className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-10 w-full max-w-7xl mx-auto ${className}`}
+      className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 p-3 md:p-10 w-full max-w-7xl mx-auto ${className}`}
     >
       {cardsContent.map((data, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} relative w-88 h- aspect-3/4 rounded-3xl overflow-hidden shadow-xl transition-shadow hover:shadow-2xl`}
+          className={`card card-${idx} relative w-36 md:w-60 lg:w-88  aspect-3/4 rounded-3xl overflow-hidden shadow-xl transition-shadow hover:shadow-2xl`}
           style={{
             transform: transformStyles[idx] || 'none',
             backgroundColor: data.type === 'text' ? 'transparent' : '#eee'

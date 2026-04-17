@@ -37,7 +37,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-[#F9F6F0] py-20">
+    <div className="w-full flex items-center justify-center bg-[#F9F6F0] pt-4 md:pt-20 ">
       <MixedBounceCards
         cardsContent={mixedCards}
         transformStyles={customTransformStyles}
