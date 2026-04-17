@@ -3,38 +3,30 @@ import { gsap } from 'gsap';
 
 export default function MixedBounceCards({
   className = '',
-
   cardsContent = [],
-  containerWidth = '100%',
-  containerHeight = 400,
   animationDelay = 0.5,
-  animationStagger = 0.06,
+  animationStagger = 0.1,
   easeType = 'elastic.out(1, 0.8)',
+  // Only use rotations now, the Grid handles the positioning
   transformStyles = [
-
-  'rotate(8deg) translate(-450px, 20px)',
-
-
-  'rotate(-4deg) translate(-150px, -15px)',
-
-
-  'rotate(5deg) translate(150px, -15px)',
-
-
-  'rotate(-8deg) translate(450px, 20px)'
+    'rotate(-6deg)',
+    'rotate(4deg)',
+    'rotate(-3deg)',
+    'rotate(7deg)'
   ],
   enableHover = true,
 }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // GSAP Context ensures clean up on unmount
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.card',
-        { scale: 0 },
+        { scale: 0, y: 50, opacity: 0 },
         {
           scale: 1,
+          y: 0,
+          opacity: 1,
           stagger: animationStagger,
           ease: easeType,
           delay: animationDelay,
@@ -45,104 +37,43 @@ export default function MixedBounceCards({
     return () => ctx.revert();
   }, [animationStagger, easeType, animationDelay]);
 
-
-  const getNoRotationTransform = (transformStr) => {
-    const hasRotate = /rotate\([\s\S]*?\)/.test(transformStr);
-    if (hasRotate) {
-      return transformStr.replace(/rotate\([\s\S]*?\)/, 'rotate(0deg)');
-    } else if (transformStr === 'none') {
-      return 'rotate(0deg)';
-    } else {
-      return `${transformStr} rotate(0deg)`;
-    }
-  };
-
-  const getPushedTransform = (baseTransform, offsetX) => {
-    const translateRegex = /translate\(([-0-9.]+)px\)/;
-    const match = baseTransform.match(translateRegex);
-    if (match) {
-      const currentX = parseFloat(match[1]);
-      const newX = currentX + offsetX;
-      return baseTransform.replace(translateRegex, `translate(${newX}px)`);
-    } else {
-      return baseTransform === 'none'
-        ? `translate(${offsetX}px)`
-        : `${baseTransform} translate(${offsetX}px)`;
-    }
-  };
-
-  const pushSiblings = (hoveredIdx) => {
-    if (!enableHover || !containerRef.current) return;
-
-    const q = gsap.utils.selector(containerRef);
-    cardsContent.forEach((_, i) => {
-      const selector = q(`.card-${i}`);
-      gsap.killTweensOf(selector);
-
-      const baseTransform = transformStyles[i] || 'none';
-
-      if (i === hoveredIdx) {
-        const noRotation = getNoRotationTransform(baseTransform);
-        gsap.to(selector, {
-          transform: noRotation,
-          duration: 0.4,
-          ease: 'back.out(1.4)',
-          overwrite: 'auto',
-        });
-      } else {
-        const offsetX = i < hoveredIdx ? -250 : 250;
-        const pushedTransform = getPushedTransform(baseTransform, offsetX);
-
-        const distance = Math.abs(hoveredIdx - i);
-        const delay = distance * 0.05;
-
-        gsap.to(selector, {
-          transform: pushedTransform,
-          duration: 0.4,
-          ease: 'back.out(1.4)',
-          delay,
-          overwrite: 'auto',
-        });
-      }
+  const handleMouseEnter = (idx) => {
+    if (!enableHover) return;
+    gsap.to(`.card-${idx}`, {
+      rotation: 0,
+      scale: 1.05,
+      zIndex: 10,
+      duration: 0.4,
+      ease: 'back.out(1.7)',
     });
   };
 
-  const resetSiblings = () => {
-    if (!enableHover || !containerRef.current) return;
-    const q = gsap.utils.selector(containerRef);
-    cardsContent.forEach((_, i) => {
-      const selector = q(`.card-${i}`);
-      gsap.killTweensOf(selector);
-
-      const baseTransform = transformStyles[i] || 'none';
-      gsap.to(selector, {
-        transform: baseTransform,
-        duration: 0.4,
-        ease: 'back.out(1.4)',
-        overwrite: 'auto',
-      });
+  const handleMouseLeave = (idx) => {
+    if (!enableHover) return;
+    gsap.to(`.card-${idx}`, {
+      rotation: parseInt(transformStyles[idx].replace(/[^0-9-]/g, '')),
+      scale: 1,
+      zIndex: 1,
+      duration: 0.4,
+      ease: 'power2.out',
     });
   };
 
   return (
     <div
-      className={`relative flex items-center justify-center ${className}`}
-      style={{
-        width: containerWidth,
-        height: containerHeight,
-      }}
       ref={containerRef}
+      className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-10 w-full max-w-7xl mx-auto ${className}`}
     >
       {cardsContent.map((data, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} absolute w-92 h-11/12 rounded-4xl overflow-hidden`}
+          className={`card card-${idx} relative w-88 h- aspect-3/4 rounded-3xl overflow-hidden shadow-xl transition-shadow hover:shadow-2xl`}
           style={{
-            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.15)',
             transform: transformStyles[idx] || 'none',
+            backgroundColor: data.type === 'text' ? 'transparent' : '#eee'
           }}
-          onMouseEnter={() => pushSiblings(idx)}
-          onMouseLeave={resetSiblings}
+          onMouseEnter={() => handleMouseEnter(idx)}
+          onMouseLeave={() => handleMouseLeave(idx)}
         >
           {/* Renderer based on type */}
           {data.type === 'image' && (
@@ -166,17 +97,18 @@ export default function MixedBounceCards({
 
           {data.type === 'text' && (
             <div
-              className={`w-full h-full flex flex-col justify-between p-6 ${data.bgColor || ''}`}
+              className={`w-full h-full flex flex-col justify-between p-8 ${data.bgColor || ''}`}
               style={{ color: data.textColor || '#000' }}
             >
               <h2 className="text-5xl font-black tracking-tighter">
                 {data.title}
               </h2>
               <div>
-                <p className="text-lg font-bold leading-tight">
+                <hr />
+                <p className="text-xl font-bold leading-tight">
                   {data.subtitle}
                 </p>
-                <p className="text-xs opacity-70 mt-1">{data.desc}</p>
+                <p className="text-sm opacity-80 mt-2">{data.desc}</p>
               </div>
             </div>
           )}

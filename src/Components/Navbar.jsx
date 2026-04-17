@@ -26,7 +26,7 @@ export default function Navbar({
 
   // Label Stack Component to reuse for Mobile & Desktop
   const NavLabel = ({ label, isSelected, color, activeColor }) => (
-    <div className="relative z-10 flex flex-col items-center overflow-hidden h-5">
+    <div className="relative z-50 flex flex-col items-center overflow-hidden h-5 ">
       <motion.span
         className="text-sm md:text-base font-bold block"
         animate={{ y: isSelected ? -30 : 0, opacity: isSelected ? 0 : 1 }}
@@ -89,7 +89,7 @@ export default function Navbar({
       </ul>
 
       {/* Desktop CTA */}
-      <button className="hidden md:flex items-center gap-2 px-6 py-3 bg-[#F8C1F8] border-2 border-[#E9A6E9] rounded-2xl font-bold text-sm hover:scale-105 transition-transform active:scale-95">
+      <button className="hidden md:flex items-center gap-2 px-3 py-2 bg-[#F8C1F8] border-2 border-[#E9A6E9] rounded-2xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 hover:rotate-8">
         Get Results
         <span className="bg-white p-1 rounded-lg">🔥</span>
       </button>
