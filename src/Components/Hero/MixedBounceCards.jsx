@@ -12,7 +12,7 @@ export default function MixedBounceCards({
     'rotate(-6deg)',
     'rotate(4deg)',
     'rotate(-3deg)',
-    'rotate(7deg)'
+    'rotate(5deg)'
   ],
   enableHover = true,
 }) {
@@ -62,7 +62,7 @@ export default function MixedBounceCards({
   return (
     <div
       ref={containerRef}
-      className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 p-3 md:p-10 w-full max-w-7xl mx-auto ${className}`}
+      className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16 p-3 md:p-10 w-full mx-6 ${className}`}
     >
       {cardsContent.map((data, idx) => (
         <div

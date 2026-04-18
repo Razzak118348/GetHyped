@@ -2,6 +2,8 @@ import React from 'react';
 import HeroSection from '../../Components/Hero/HeroSection';
 import CardNooitLarge from '../../Components/CardNooitLarge';
 import CardNooitSmall from '../../Components/CardNooitSmall';
+// import ScrollCard from '../../Components/ScrollCard';
+import ExpertisesSection from '../../Components/ScrollCard/ExpertisesSection';
 const Home = () => {
     return (
         <div className='mx-6 mt-10 '>
@@ -29,6 +31,7 @@ const Home = () => {
                     <CardNooitSmall></CardNooitSmall>
                 </div>
             </div>
+            <ExpertisesSection></ExpertisesSection>
         </div>
     );
 };
