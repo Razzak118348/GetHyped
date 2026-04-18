@@ -1,8 +1,7 @@
-
 import ScrollStack from "./ScrollStack.jsx";
 import { ScrollStackItem } from "./ScrollStackItem.jsx";
 import { motion } from 'framer-motion';
-import { ArrowRight} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const DATA = [
     {
@@ -35,7 +34,7 @@ const DATA = [
     {
         num: "04",
         title: "Data",
-        desc: "We duiken in de cijfers om te snappen wat écht werkt. En sturen jouw content scherp bij.",
+        desc: "We duiken in de cijfers om te snappen what écht werkt. En sturen jouw content scherp bij.",
         video: "https://gethyped.b-cdn.net/Expertises/Data%20comp.mp4",
         bg: "bg-[#2B79FB]",
         accent: "bg-black",
@@ -45,46 +44,65 @@ const DATA = [
 
 export default function ExpertisesSection() {
     return (
-        <section className="bg-[#F9F6F0]">
-            <ScrollStack itemStackDistance={25} baseScale={0.92}>
+        <section className="">
+            {/* Remove horizontal padding on mobile for full-width cards */}
+            <ScrollStack itemStackDistance={25} baseScale={0.92} className="px-0 md:px-4">
                 {DATA.map((item, i) => (
-                    <ScrollStackItem key={i} itemClassName="mb-[15vh] !p-0">
-                        <div className={`w-full  md:h-1/2 ${item.bg} rounded-[40px] flex flex-col md:flex-row p-3 md:p-16 relative overflow-hidden`}>
+                    <ScrollStackItem key={i} itemClassName="mb-[10vh] md:mb-[15vh] !p-0">
+                        <div className={`w-full ${item.bg} rounded-4xl flex flex-col md:flex-row p-6 md:p-16 relative overflow-hidden`}>
 
                             {/* Ghost Number */}
-                            <span className="absolute top-4 right-8 text-6xl md:text-8xl font-black opacity-5 pointer-events-none">
+                            <span className="absolute top-4 right-8 text-2xl md:text-5xl font-black opacity-5 pointer-events-none">
                                 {item.num}
                             </span>
 
-                            {/* Text Side */}
-                            <div className="w-full md:w-3/5 flex flex-col justify-center z-10">
-                                <div className="bg-gray-100 self-start px-3 py-2 rounded text-md font-bold mb-2 md:mb-6 uppercase">Expertise</div>
-                                <h2 className="text-2xl md:text-6xl font-black mb-2 md:mb-6 tracking-tighter">{item.title}</h2>
-                                <p className="text-md md:text-xl w-full md:max-w-md opacity-80 mb-3 md:mb-8">{item.desc}</p>
-                                <motion.button
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ delay: 0.4 }}
-    // Added 'w-fit' and 'self-start' to fix the width
-    className={`w-fit self-start group flex items-center gap-3 px-6 py-3 rounded-xl font-bold text-sm md:text-md text-white hover:bg-black hover:text-white hover:scale-105 transition-transform active:scale-95 hover:rotate-3 cursor-pointer ${item.accent}`}
->
-    Meer over {item.title.toLowerCase()}
-    <motion.div
-        whileHover={{ rotate: 45 }}
-        className="bg-white text-black p-1 rounded-lg group-hover:bg-white group-hover:text-black transition-colors"
-    >
-        <ArrowRight size={20} />
-    </motion.div>
-</motion.button>
-                            </div>
+                            {/* Wrapper for reordering on mobile */}
+                            <div className="w-full flex flex-col md:flex-row gap-6 md:gap-0 z-10">
 
-                            {/* Video Side */}
-                            <div className="w-full md:w-2/5 flex items-center justify-center mt-3 md:mt-0">
-                                <div className={`w-3xs md:w-80 aspect-9/12 rounded-4xl border-6 ${item.border} overflow-hidden shadow-2xl transform rotate-3`}>
-                                    <video src={item.video} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                                {/* Left Content: Title and Metadata */}
+                                <div className="w-full md:w-3/5 flex flex-col justify-center">
+                                    <div className="bg-gray-100 self-start py-1 px-2 rounded text-xs md:text-md font-bold mb-4 md:mb-6 uppercase order-1">
+                                        Expertise
+                                    </div>
+                                    <h2 className="text-2xl md:text-6xl font-black mb-4 md:mb-6 tracking-tighter order-2">
+                                        {item.title}
+                                    </h2>
+
+                                    {/* Video: Injected here for Mobile (order-3), hidden on Desktop */}
+                                    <div className="w-full flex md:hidden items-center justify-center order-3 my-4">
+                                        <div className={`w-full h-72 aspect-9/12 rounded-3xl border-4 ${item.border} overflow-hidden shadow-xl transform rotate-2`}>
+                                            <video src={item.video} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                                        </div>
+                                    </div>
+
+                                    <p className="text-sm md:text-xl w-full md:max-w-md opacity-80 mb-6 md:mb-8 order-4">
+                                        {item.desc}
+                                    </p>
+
+                                    <motion.button
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 0.4 }}
+                                        className={`w-fit self-start group flex items-center gap-3 px-1 md:px-4 py-1 md:py-3 rounded-xl font-semibold md:font-bold text-sm md:text-md text-white hover:bg-black hover:scale-105 transition-transform active:scale-95 order-5 cursor-pointer hover:rotate-6 ${item.accent}`}
+                                    >
+                                        Meer over {item.title.toLowerCase()}
+                                        <motion.div
+                                            whileHover={{ rotate: 45 }}
+                                            className="bg-white text-black p-1 rounded-lg"
+                                        >
+                                            <ArrowRight size={20} />
+                                        </motion.div>
+                                    </motion.button>
                                 </div>
-                            </div>
 
+                                {/* Right Content: Video for Desktop only */}
+                                <div className="hidden md:flex md:w-2/5 items-center justify-center">
+                                    <div className={`w-80 aspect-9/12 rounded-4xl border-6 ${item.border} overflow-hidden shadow-2xl transform rotate-3`}>
+                                        <video src={item.video} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </ScrollStackItem>
                 ))}
