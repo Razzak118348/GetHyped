@@ -19,7 +19,7 @@ const DATA = [
         desc: "We maken content die opvalt. Blijft hangen. En jouw doelgroep raakt. Creatief, snel en energiek. Altijd met het doel voor ogen.",
         video: "https://gethyped.b-cdn.net/Expertises/Loop%20BTS%20comp.mp4",
         bg: "bg-[#F3B1F3]",
-        accent: "bg-black",
+        accent: "bg-white",
         border: "border-white"
     },
     {
@@ -28,7 +28,7 @@ const DATA = [
         desc: "De juiste content verdient het om gezien te worden. We verspreiden de content waar jouw doelgroep is.",
         video: "https://gethyped.b-cdn.net/Over%20de%20Top/overdetop-loop.mp4",
         bg: "bg-[#31D18A]",
-        accent: "bg-black",
+        accent: "bg-white",
         border: "border-white"
     },
     {
@@ -37,7 +37,7 @@ const DATA = [
         desc: "We duiken in de cijfers om te snappen what écht werkt. En sturen jouw content scherp bij.",
         video: "https://gethyped.b-cdn.net/Expertises/Data%20comp.mp4",
         bg: "bg-[#2B79FB]",
-        accent: "bg-black",
+        accent: "bg-white",
         border: "border-white"
     }
 ];
@@ -83,12 +83,12 @@ export default function ExpertisesSection() {
                                         initial={{ opacity: 0, scale: 0.9 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ delay: 0.4 }}
-                                        className={`w-fit self-start group flex items-center gap-3 px-1 md:px-4 py-1 md:py-3 rounded-xl font-semibold md:font-bold text-sm md:text-md text-white hover:bg-black hover:scale-105 transition-transform active:scale-95 order-5 cursor-pointer hover:rotate-6 ${item.accent}`}
+                                        className={`w-fit self-start group flex items-center gap-3 px-1 md:px-4 py-1 md:py-3 rounded-xl font-semibold md:font-bold text-sm md:text-md hover:text-white hover:bg-black hover:scale-105 transition-transform active:scale-95 order-5 cursor-pointer hover:rotate-6 ${item.accent}`}
                                     >
                                         Meer over {item.title.toLowerCase()}
                                         <motion.div
                                             whileHover={{ rotate: 45 }}
-                                            className="bg-white text-black p-1 rounded-lg"
+                                            className="bg-black text-white hover:bg-white hover:text-black p-1 rounded-lg"
                                         >
                                             <ArrowRight size={20} />
                                         </motion.div>
