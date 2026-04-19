@@ -100,7 +100,7 @@ const ScrollStack = ({
 
   return (
     <div className={`relative w-full overflow-x-hidden ${className}`} ref={scrollerRef}>
-      <div className="scroll-stack-inner pt-[10vh] pb-[20vh]">
+      <div className="scroll-stack-inner pt-[4vh] lg:pt-[10vh] pb-[16vh] lg:pb-[20vh]">
         {children}
         <div className="scroll-stack-end w-full h-px" />
       </div>

@@ -49,7 +49,7 @@ export default function ExpertisesSection() {
             {/* Remove horizontal padding on mobile for full-width cards */}
             <ScrollStack itemStackDistance={25} baseScale={0.92} className="px-0 md:px-4">
                 {DATA.map((item, i) => (
-                    <ScrollStackItem key={i} itemClassName="mb-[10vh] md:mb-[15vh] !p-0">
+                    <ScrollStackItem key={i} itemClassName="mb-[1vh] lg:mb-[15vh] !p-0">
                         <Link to="/" className="cursor-pointer">
                         <div className={`w-full ${item.bg} rounded-4xl flex flex-col md:flex-row p-6 md:p-16 relative overflow-hidden`}>
 
@@ -66,13 +66,13 @@ export default function ExpertisesSection() {
                                     <div className="bg-gray-100 self-start py-1 px-2 rounded text-xs md:text-md font-bold mb-4 md:mb-6 uppercase order-1">
                                         Expertise
                                     </div>
-                                    <h2 className="text-2xl md:text-6xl font-black mb-4 md:mb-6 tracking-tighter order-2">
+                                    <h2 className="text-2xl md:text-6xl font-black mb-3 md:mb-6 tracking-tighter order-2">
                                         {item.title}
                                     </h2>
 
                                     {/* Video: Injected here for Mobile (order-3), hidden on Desktop */}
                                     <div className="w-full flex md:hidden items-center justify-center order-3 my-4">
-                                        <div className={`w-full h-72 aspect-9/12 rounded-3xl border-4 ${item.border} overflow-hidden shadow-xl transform rotate-2`}>
+                                        <div className={`w-full h-62 aspect-9/12 rounded-3xl border-4 ${item.border} overflow-hidden shadow-xl transform rotate-2`}>
                                             <video src={item.video} autoPlay loop muted playsInline className="w-full h-full object-cover" />
                                         </div>
                                     </div>

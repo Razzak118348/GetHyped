@@ -20,13 +20,13 @@ const LogoCard = ({ logo, name }) => (
   <motion.div
     whileHover={{ rotate: 3, scale: 1.05 }} // Added hover rotation and scale
     transition={{ type: "spring", stiffness: 400, damping: 10 }}
-    className="group flex shrink-0 h-25 w-45 sm:h-32 sm:w-56 md:h-40 md:w-62 items-center justify-center rounded-2xl border border-gray-200 bg-white/60 py-4 md:p-6 transition-colors duration-300 hover:bg-white/95"
+    className="group flex shrink-0 sm:h-32 sm:w-56 md:h-52 md:w-68 items-center justify-center rounded-2xl border border-gray-200 bg-white/60 py-4 md:p-6 transition-colors duration-300 hover:bg-white/95"
   >
     <img
       src={logo}
       alt={`${name} logo`}
       // Removed grayscale, increased size via lower padding and hover scale
-      className="max-h-[80%] max-w-[80%] object-contain transition-transform duration-300 group-hover:scale-110"
+      className="max-h-72 max-w-96 md:max-h-full md:max-w-full object-contain transition-transform duration-100 group-hover:scale-110"
     />
   </motion.div>
 );
@@ -44,7 +44,7 @@ const BrandShowcase = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-3xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-left md:-ml-6"
+          className="text-3xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-left lg:-ml-6"
         >
           These brands <br className="hidden sm:block" /> got hyped.
         </motion.h2>
@@ -56,7 +56,7 @@ const BrandShowcase = () => {
           initial={{ x: 0 }}
           animate={{ x: "-50%" }}
           transition={{
-            duration: 6,
+            duration: 12,
             ease: "linear",
             repeat: Infinity,
           }}
