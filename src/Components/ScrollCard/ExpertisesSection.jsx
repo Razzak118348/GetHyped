@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import ScrollStack from "./ScrollStack.jsx";
 import { ScrollStackItem } from "./ScrollStackItem.jsx";
 import { motion } from 'framer-motion';
@@ -49,6 +50,7 @@ export default function ExpertisesSection() {
             <ScrollStack itemStackDistance={25} baseScale={0.92} className="px-0 md:px-4">
                 {DATA.map((item, i) => (
                     <ScrollStackItem key={i} itemClassName="mb-[10vh] md:mb-[15vh] !p-0">
+                        <Link to="/" className="cursor-pointer">
                         <div className={`w-full ${item.bg} rounded-4xl flex flex-col md:flex-row p-6 md:p-16 relative overflow-hidden`}>
 
                             {/* Ghost Number */}
@@ -103,7 +105,7 @@ export default function ExpertisesSection() {
                                 </div>
 
                             </div>
-                        </div>
+                        </div></Link>
                     </ScrollStackItem>
                 ))}
             </ScrollStack>
