@@ -45,7 +45,7 @@ To get a local copy up and running, follow these simple steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/yourusername/gethyped.git](https://github.com/yourusername/gethyped.git)
+   git clone ([https://github.com/yourusername/gethyped.git](https://github.com/Razzak118348/GetHyped.git))
 
 2. **Install dependencies:**
    ```bash
@@ -65,8 +65,8 @@ To get a local copy up and running, follow these simple steps:
 ## 👤 Author
 
 **Abdur Razzak** *MERN Stack Developer*
--  **Department:** CSE(Computer Science and Engineering)
 
+-  **Department:** CSE(Computer Science and Engineering)
 - 🎓 **University:** Hajee Mohammad Danesh Science and Technology University (HSTU)
 - 🚀 **Specialty:** High-end Frontend Animation & UI/UX Development
 - 💻 **Tech Stack:**HTML,CSS,Tailwind,JavaScript, React 19, Node.js, GSAP, Framer Motion
