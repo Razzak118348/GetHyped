@@ -8,6 +8,7 @@ import CardNooitSmall from '../../Components/CardNooitSmall';
 // import ScrollCard from '../../Components/ScrollCard';
 import ExpertisesSection from '../../Components/ScrollCard/ExpertisesSection';
 import WorkSection from '../../Components/WorkSection/WorkSection';
+import BrandShowcase from '../../Components/BrandShowcase';
 const Home = () => {
     return (
         <div className='mx-6 mt-10 '>
@@ -58,6 +59,7 @@ const Home = () => {
             </div>
 
 <WorkSection></WorkSection>
+<BrandShowcase></BrandShowcase>
         </div>
     );
 };
